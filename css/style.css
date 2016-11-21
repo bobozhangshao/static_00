@@ -1,0 +1,92 @@
+body{
+	overflow:scroll;
+	min-height:800px;
+	vertical-align:middle;
+	border:none;
+	outline:none;
+	font-size:12px; /* this controlls all the fonts sizes */
+	font-family:ArialR !important;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	text-shadow: 0 /*{b-bup-shadow-x}*/ 1px /*{b-bup-shadow-y}*/ 1px /*{b-bup-shadow-radius}*/ #F6F6F6 /*{b-bup-shadow-color}*/;
+}
+
+button:hover{
+	cursor:pointer;
+}
+
+#Histogram_button,#Poincare_button,#PSD_button{
+	margin-top:3px;
+	margin-bottom:3px;
+	margin-left:120px;
+}
+
+#chatLog{  
+    padding:5px;  
+    border:1px solid black;  
+} 
+
+#chatLog p {  
+    margin:0;  
+}
+
+#ECG {
+    height: 300px; 
+    width: 800px; 
+    border: 1px solid #ccc; 
+    padding: 1px;
+}
+
+#RR {
+    height: 200px; 
+    width: 800px; 
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;	
+    padding: 1px;
+}
+
+#HR {
+    height: 200px; 
+    width: 800px; 
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;	
+    padding: 1px;
+}
+
+#RR_hist {
+    height: 200px; 
+    width: 800px;
+    border: 1px solid #ccc;		
+    padding: 1px;
+}
+
+#HR_hist {
+    height: 200px; 
+    width: 800px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;	
+    padding: 1px;
+}
+
+#Poincare,#PSD {
+    height: 400px; 
+    width: 800px;
+    border: 1px solid #ccc;	
+    padding: 1px;
+	display: none;
+}
+
+.event {
+    color: #999;
+}
+
+.hide {
+	display: none;
+}

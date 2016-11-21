@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+        <title>ECG</title>
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+        
+        <script language="javascript" type="text/javascript" src="libs/jquery-1.7.1.min.js"></script>
+        <script language="javascript" type="text/javascript" src="libs/echarts.common.min.js"></script>
+        
+        <script language="javascript" type="text/javascript" src="libs/websocket.js"></script>
+        <script language="javascript" type="text/javascript" src="libs/index.js"></script>
+        
+    </head>
+
+    <body>
+
+        <h1>ECG Client</h1>    
+            
+        <div id="chatLog" ></div>
+        
+        <button id="scanDev">Scan</button>
+        <br/>
+        <select id="devList"></select>
+        <br/>
+        
+        <button id="connDev">Connect</button>
+        <br/>
+        <select id="connlist"></select>
+        <br/>
+        <button id="disConn">Disconnect</button>
+        
+        <div id="ECG"></div>
+		<div id="RR"></div>
+        <div id="HR"></div>
+		
+		<button id="Histogram_button">Histogram</button>
+		<button id="Poincare_button">Poincare plot</button>
+		<button id="PSD_button">Power Spectral Density</button>
+		
+		<div id="RR_hist"></div>
+		<div id="HR_hist"></div>
+		<div id="Poincare"></div>
+		<div id="PSD"></div>
+		
+		
+    
+	    <script language="javascript" type="text/javascript" src="libs/draw.js"></script>
+    </body>
+
+</html>

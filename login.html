@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="libs/bootstrap.min.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-cookies.min.js"></script>
+    <title>back-end-sys</title>
+</head>
+<body ng-app="loginApp">
+<div ng-controller="loginController" class="panel panel-primary">
+    <div class="col-md-offset-2 col-md-4">
+        <img src="img/fang_logo.png" class="img-responsive">
+        <div ng-if="login">
+            <label class="label label-info" id="loginInfo">synchronize only after logging in</label>
+        </div>
+        <div ng-if="!login">
+            <label class="label label-success">welcome <i><span ng-bind="userInfo.username"></span></i>
+                <div class="btn btn-sm btn-link" ng-click="clickLogout()">logout</div>
+            </label>
+        </div>
+        <br>
+    </div>
+<div ng-if="login" class="panel-body col-md-offset-1">
+    <form name="loginForm" role="form" class="form-horizontal">
+        <div class="form-group input-group col-lg-8">
+            <span class="input-group-addon">username</span>
+            <input type="text" class="form-control" ng-model="userInfo.username" placeholder="username" maxlength="20" required>
+        </div>
+        <div class="form-group input-group col-lg-8">
+            <span class="input-group-addon">password</span>
+            <input type="password" class="form-control" ng-model="userInfo.password" placeholder="password" maxlength="20" required>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="userInfo.autoLogin">remember me
+                    </label>
+                    <input ng-disabled="loginForm.$invalid" type="submit" class="btn btn-sm btn-default" ng-click="clickLogin()" value="login">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div ng-if="showList">
+    <table class="table table-tripped table-hover">
+        <thead>
+        <tr>
+            <th width="5%">#</th>
+            <th width="25%">time</th>
+            <th width="50%">file</th>
+            <th width="20%">manage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="dataFile in dataFiles">
+            <td>{{ $index }}</td>
+            <td>{{ dataFile.MeasureTime }}</td>
+            <td>{{ dataFile.Name }}</td>
+            <td><button class="btn btn-info btn-xs">upload</button><button class="btn btn-danger btn-xs">delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<script src="libs/http.js"></script>
+</body>
+</html>
