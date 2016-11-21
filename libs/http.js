@@ -94,6 +94,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
             if (response.logout == 'OK'){
                 $scope.showList = 0;
                 $scope.login = 1;
+                $cookies.remove('loginState');
             }
         }).error(function () {
             alert("system error(logout)");
@@ -101,9 +102,12 @@ app.controller('loginController', function($scope, $http, $cookies) {
     };
 
     //scan the file of measuredata
-    $http.get("./scripts/scan.php").success(function (response) {
-        $scope.dataFiles = response;
-    }).error(function () {
-        alert("system error(scan)");
-    });
+    $scope.scanFiles = function () {
+        $http.get("./scripts/scan.php?username="+$cookies.get('loginState')).success(function (response) {
+            $scope.dataFiles = response;
+        }).error(function () {
+            alert("system error(scan)");
+        });
+    };
+    $scope.scanFiles();
 });
