@@ -22,8 +22,10 @@ app.controller('loginController', function($scope, $http, $cookies) {
     $scope.loginURL      = $scope.preURL+"index.php?option=com_heartcare&task=user.login";
     $scope.logoutURL     = $scope.preURL+"index.php?option=com_heartcare&task=user.logout";
     $scope.checkLoginURL = $scope.preURL+"index.php?option=com_heartcare&task=user.user_state";
+    $scope.checkEmailURL = $scope.preURL+"index.php?option=com_heartcare&task=user.find_email";
     $scope.uploadURL     = $scope.preURL+"index.php?option=com_heartcare&task=upload.upload";
     $scope.showList = 0;
+    $scope.uploadAlert = 0;
     $scope.login = 1;
     $scope.userInfo = {
         username:"",
@@ -75,6 +77,10 @@ app.controller('loginController', function($scope, $http, $cookies) {
                     $cookies.remove('nameSave');
                     $cookies.remove('pwdSave');
                 }
+
+                if ($cookies.get('loginState')){
+                    $scope.scanFiles();
+                }
             } else {
                 alert("login error");
             }
@@ -89,7 +95,6 @@ app.controller('loginController', function($scope, $http, $cookies) {
             url: $scope.logoutURL,
             data:{username:$scope.userInfo.username},
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-
         }).success(function (response) {
             if (response.logout == 'OK'){
                 $scope.showList = 0;
@@ -103,11 +108,71 @@ app.controller('loginController', function($scope, $http, $cookies) {
 
     //scan the file of measuredata
     $scope.scanFiles = function () {
-        $http.get("./scripts/scan.php?username="+$cookies.get('loginState')).success(function (response) {
-            $scope.dataFiles = response;
-        }).error(function () {
-            alert("system error(scan)");
-        });
+        if ($cookies.get('loginState') != undefined){
+            $http.get("./scripts/scan.php?username="+$cookies.get('loginState')).success(function (response) {
+                $scope.dataFiles = response;
+            }).error(function () {
+                alert("system error(scan)");
+            });
+        }
     };
     $scope.scanFiles();
+
+    //upload to the platform
+    $scope.uploadData = function (itemInfo,num) {
+        if (confirm("Confirm upload No. "+num+"?")){
+            $http({
+                method:'POST',
+                url:$scope.checkEmailURL,
+                data:{username:itemInfo.UserName},
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function (response) {
+                if (response.have_user == 'EXIST' || response.have_user == 'OK'){
+                    $http({
+                        method:'POST',
+                        url:'./scripts/upload.php',
+                        data:{
+                            username:itemInfo.UserName,
+                            user_email:response.email,
+                            device_id:itemInfo.Device,
+                            datatime:itemInfo.MeasureTime,
+                            datatype:itemInfo.DataType,
+                            device_type:itemInfo.Device,
+                            file:itemInfo.File
+                        },
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    }).success(function (res) {
+                        $http.get("./scripts/delete.php?filename="+itemInfo.Name+"&username="+itemInfo.UserName).success(function (response) {
+                            if (response == 'OK'){
+                                $scope.scanFiles();
+                                alert("upload success");
+                            }
+                        })
+                    }).error(function () {
+                        alert("system fail(upload)");
+                    })
+                }
+            })
+        }
+    };
+
+    //delete from the document
+    $scope.delData = function (itemInfo,num) {
+        if (confirm("Confirm deletion of NO. "+num+"?")){
+            $http.get("./scripts/delete.php?filename="+itemInfo.Name+"&username="+itemInfo.UserName).success(function (response) {
+                if (response == 'OK'){
+                    $scope.scanFiles();
+                    alert("delete successfully");
+                }
+            })
+        }
+    };
+
+    $scope.showUploadAlert = function () {
+        $scope.uploadAlert = 1;
+    };
+    $scope.closeUploadAlert = function () {
+        $scope.uploadAlert = 0;
+    }
+
 });

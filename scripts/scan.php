@@ -5,24 +5,6 @@
  * @Time: 2016/11/21 08:32
  * @Desc: scan the document of measure data file
  */
-//////////////////////////////////////////////////////////////////////////
-//测试数据                                                               //
-//$data = [
-//    0=>[
-//        'MeasureTime'=>'2016-11-21 00:01:09',
-//        'Device'=>'ECGICGMONITOR',
-//        'DataType'=>'ACC',
-//        'Name'=>'admin_ECGICGMONITOR_ACC_2016_11_21_00_01_09_.txt'
-//    ],
-//    1=>['MeasureTime'=>'2016-11-21 10:01:09',
-//        'Device'=>'ECGICGMONITOR',
-//        'DataType'=>'ACC',
-//        'Name'=>'admin_ECGICGMONITOR_ACC_2016_11_21_10_01_09_.txt'
-//    ]
-//];
-//
-//echo json_encode($data);                                              //
-//////////////////////////////////////////////////////////////////////////
 
 //get the files
 function getFiles()
@@ -32,7 +14,9 @@ function getFiles()
         $files=array_diff(scandir($dir),array('.','..'));
         return $files;
     } else {
-        @mkdir($dir,0777);
+        if($_GET['username']){
+            @mkdir($dir,0777);
+        }
         return 0;
     }
 }
@@ -40,18 +24,20 @@ function getFiles()
 //fix the data
 function fixData()
 {
+    $dir = substr(__DIR__,0,-7)."data/".$_GET['username'];
     $files = getFiles();
     $result = array();
     if ($files){
         $count = 0;
         foreach ($files as $item){
-            $arr = explode('_',substr($item,0,strpos($item,'.')-1));
+            $arr = explode('_',substr($item,0,strpos($item,'.')));
 
             $result[$count]['UserName'] = $arr[0];
             $result[$count]['Device'] = $arr[1];
             $result[$count]['DataType'] = $arr[2];
             $result[$count]['MeasureTime'] = $arr[3].'.'.$arr[4].'.'.$arr[5].' '.$arr[6].':'.$arr[7].':'.$arr[8];
             $result[$count]['Name'] = $item;
+            $result[$count]['File'] = $dir.'/'.$item;
 
             $count++;
         }

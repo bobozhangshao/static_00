@@ -5,19 +5,23 @@
         <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
         <title>ECG</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" />
-        
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
         <script language="javascript" type="text/javascript" src="libs/jquery-1.7.1.min.js"></script>
         <script language="javascript" type="text/javascript" src="libs/echarts.common.min.js"></script>
         
         <script language="javascript" type="text/javascript" src="libs/websocket.js"></script>
+        <script language="javascript" type="text/javascript" src="libs/angular.min.js"></script>
+        <script language="javascript" type="text/javascript" src="libs/angular-cookies.min.js"></script>
         <script language="javascript" type="text/javascript" src="libs/index.js"></script>
         
     </head>
 
-    <body>
+    <body ng-app="indexApp">
 
-        <h1>ECG Client</h1>    
-            
+    <div ng-controller="indexController">
+        <h1 >ECG Client</h1>
+        <button class="btn btn-xs btn-info" ng-click="skipToUpload()">go to manage measured data</button>
+
         <div id="chatLog" ></div>
         
         <button id="scanDev">Scan</button>
@@ -43,9 +47,9 @@
 		<div id="HR_hist"></div>
 		<div id="Poincare"></div>
 		<div id="PSD"></div>
-		
-		
-    
+
+
+    </div>
 	    <script language="javascript" type="text/javascript" src="libs/draw.js"></script>
     </body>
 
