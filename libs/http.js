@@ -138,6 +138,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
                             datatime:itemInfo.MeasureTime,
                             datatype:itemInfo.DataType,
                             device_type:itemInfo.Device,
+                            url:$scope.uploadURL,
                             file:itemInfo.File
                         },
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -173,6 +174,9 @@ app.controller('loginController', function($scope, $http, $cookies) {
     };
     $scope.closeUploadAlert = function () {
         $scope.uploadAlert = 0;
-    }
+    };
+    $scope.backToMeasure = function () {
+        window.location.href = "index.html";
+    };
 
 });

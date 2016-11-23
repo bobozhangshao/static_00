@@ -17,12 +17,15 @@
         <div ng-if="login">
             <label class="label label-info" id="loginInfo">synchronize only after logging in</label>
         </div>
-        <div ng-if="!login" class="row">
+        <div ng-if="!login">
             <label class="label label-success">welcome <i><span ng-bind="userInfo.username"></span></i>
                 <div class="btn btn-sm btn-link" ng-click="clickLogout()">logout</div>
                 <div class="btn btn-sm btn-link" ng-click="scanFiles()">refresh</div>
             </label>
-            <label class="label label-warning" ng-show="uploadAlert">file will be deleted from the local document</label>
+            <label>
+                <button class="btn btn-info btn-xs" ng-click="backToMeasure()">back to measure</button>
+            </label>
+            <label class="label label-danger" ng-show="uploadAlert">file will be deleted from the local document</label>
         </div>
     </div>
 <div ng-if="login" class="panel-body col-md-offset-1">

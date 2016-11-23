@@ -8,7 +8,7 @@
 
 function doUploadCurl()
 {
-    $url = "http://localhost/HeartCare/index.php?option=com_heartcare&task=upload.upload";
+    $url = $_POST['url'];
 
     $fileInfo['username']   = $_POST['username'];
     $fileInfo['user_email'] = $_POST['user_email'];
