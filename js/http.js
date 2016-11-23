@@ -176,7 +176,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
         $scope.uploadAlert = 0;
     };
     $scope.backToMeasure = function () {
-        window.location.href = "../index.html";
+        window.location.href = "index.html";
     };
 
 });

@@ -92,11 +92,10 @@ var appIndex = angular.module('indexApp',['ngCookies']);
 appIndex.controller('indexController',function ($scope,$cookies) {
     var loginName = $cookies.get('loginState');
     if (!loginName){
-        window.location.href='../login.html';
+        window.location.href='login.html';
     }
 
     $scope.skipToUpload = function () {
-        window.location.href='../login.html';
-
+        window.location.href='login.html';
     }
 });
