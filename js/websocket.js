@@ -43,6 +43,15 @@ var websocket={
 			{
 				var ecgdata = rsp["ecgdata"];
 				var peaks = rsp["peaks"];
+
+                $.ajax({
+                    type:"POST",
+                    url:"./actions/measure.php",
+                    data:{'data':ecgdata,'type':'ECG','device':''},
+                    success:function () {
+                    }
+                });
+
 				eval(func + "(" + ecgdata + "," +peaks+ ")");
 			}
 		    else{
