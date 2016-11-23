@@ -11,11 +11,15 @@ function getFiles()
 {
     $dir = substr(__DIR__,0,-7)."data/".$_GET['username'];
     if (file_exists($dir)){
-        $files=array_diff(scandir($dir),array('.','..'));
+        $files=array_diff(scandir($dir),array('.','..','index.html'));
         return $files;
     } else {
         if($_GET['username']){
-            @mkdir($dir,0777);
+            @mkdir($dir,0777,true);
+            $indexHTML = $dir."/index.html";
+            $fp = fopen($indexHTML,'w');
+            fwrite($fp,'<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body></body></html>');
+            fclose($fp);
         }
         return 0;
     }
