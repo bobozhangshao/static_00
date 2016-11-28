@@ -66,7 +66,8 @@ app.controller('loginController', function($scope, $http, $cookies) {
                 $scope.showList = 1;
                 $scope.login = 0;
 
-                $cookies.put('loginState',$scope.userInfo.username);
+                $cookies.put('loginState',$scope.userInfo.username);//登陆者
+                $cookies.put('workUser',$scope.userInfo.username);  //被测者
 
                 //save login state
                 if ($scope.userInfo.autoLogin){
@@ -185,6 +186,8 @@ app.controller('loginController', function($scope, $http, $cookies) {
     };
 
     $scope.changeUser = function (user) {
+        $cookies.remove('workUser');
+
         var num = $scope.users.username.indexOf(user);
         if (num >= 0){
             $scope.userInfo = {
@@ -192,6 +195,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
                 password:$scope.users.password[num],
                 autoLogin:true
             };
+            $cookies.put('workUser',$scope.userInfo.username);//被测者
             $scope.scanFiles();
         }
     };
@@ -199,16 +203,25 @@ app.controller('loginController', function($scope, $http, $cookies) {
     $scope.usersList = function () {
         $http.get("./actions/map.php?admin="+$cookies.get('loginState')).success(function (response) {
             $scope.users = response;
-            $scope.user = $scope.users.username[0];
 
-            $scope.userInfo = {
-                username:$scope.users.username[0],
-                password:$scope.users.password[0],
-                autoLogin:true
-            };
-
+            if ($scope.users.length != 0){
+                $scope.userInfo = {
+                    username:$scope.users.username[0],
+                    password:$scope.users.password[0],
+                    autoLogin:true
+                };
+            } else {
+                $scope.userInfo = {
+                    username:$cookies.get('nameSave'),
+                    password:$cookies.get('pwdSave'),
+                    autoLogin:true
+                };
+            }
+            $scope.scanFiles();
+        }).error(function () {
             $scope.scanFiles();
         });
     };
+
     $scope.usersList();
 });
