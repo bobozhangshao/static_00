@@ -25,7 +25,7 @@
             <label>
                 <button class="btn btn-info btn-xs" ng-click="backToMeasure()">back to measure</button>
             </label>
-            <select id="userList" ng-change="changeUser(user)" ng-model="user" ng-init="user=users.username[0]" ng-options="user for user in users.username"></select>
+            <label class="label label-primary">scan <select class="text-success" ng-change="changeUser(user)" ng-model="user" ng-init="user=users.username[0]" ng-options="user for user in users.username"></select></label>
             <label class="label label-danger" ng-show="uploadAlert">file will be deleted from the local document</label>
         </div>
     </div>

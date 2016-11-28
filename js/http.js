@@ -28,16 +28,14 @@ app.controller('loginController', function($scope, $http, $cookies) {
     $scope.uploadAlert = 0;
     $scope.login = 1;
     $scope.userInfo = {
-        username:"",
-        password:"",
+        username:$cookies.get('nameSave'),
+        password:$cookies.get('pwdSave'),
         autoLogin:true
     };
     $scope.dataFiles = [];
-
     $scope.users = [];
+
     $scope.checkLogin = function () {
-        $scope.userInfo.username = $cookies.get('nameSave');
-        $scope.userInfo.password = $cookies.get('pwdSave');
         var loginName = $cookies.get('loginState');
         if (loginName){
             $http({
@@ -85,16 +83,23 @@ app.controller('loginController', function($scope, $http, $cookies) {
             } else {
                 alert("login error");
             }
+
+            $scope.usersList();
         }).error(function () {
             alert("system error(login)");
         })
     };
 
     $scope.clickLogout = function () {
+        $scope.userInfo = {
+            username:$cookies.get('nameSave'),
+            password:$cookies.get('pwdSave'),
+            autoLogin:true
+        };
         $http({
             method:'POST',
             url: $scope.logoutURL,
-            data:{username:$scope.userInfo.username},
+            data:{username:$cookies.get('loginState')},
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         }).success(function (response) {
             if (response.logout == 'OK'){
@@ -117,7 +122,6 @@ app.controller('loginController', function($scope, $http, $cookies) {
             });
         }
     };
-    $scope.scanFiles();
 
     //upload to the platform
     $scope.uploadData = function (itemInfo,num) {
@@ -186,6 +190,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
             $scope.userInfo = {
                 username:$scope.users.username[num],
                 password:$scope.users.password[num],
+                autoLogin:true
             };
             $scope.scanFiles();
         }
@@ -194,12 +199,15 @@ app.controller('loginController', function($scope, $http, $cookies) {
     $scope.usersList = function () {
         $http.get("./actions/map.php?admin="+$cookies.get('loginState')).success(function (response) {
             $scope.users = response;
+            $scope.user = $scope.users.username[0];
 
             $scope.userInfo = {
-                username:response.username[0].toString(),
-                password:response.password[0].toString(),
+                username:$scope.users.username[0],
+                password:$scope.users.password[0],
                 autoLogin:true
             };
+
+            $scope.scanFiles();
         });
     };
     $scope.usersList();
