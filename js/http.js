@@ -107,6 +107,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
                 $scope.showList = 0;
                 $scope.login = 1;
                 $cookies.remove('loginState');
+                $cookies.remove('workUser');
             }
         }).error(function () {
             alert("system error(logout)");
