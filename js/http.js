@@ -34,6 +34,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
     };
     $scope.dataFiles = [];
 
+    $scope.users = [];
     $scope.checkLogin = function () {
         $scope.userInfo.username = $cookies.get('nameSave');
         $scope.userInfo.password = $cookies.get('pwdSave');
@@ -109,7 +110,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
     //scan the file of measuredata
     $scope.scanFiles = function () {
         if ($cookies.get('loginState') != undefined){
-            $http.get("./actions/scan.php?username="+$cookies.get('loginState')).success(function (response) {
+            $http.get("./actions/scan.php?username="+$scope.userInfo.username).success(function (response) {
                 $scope.dataFiles = response;
             }).error(function () {
                 alert("system error(scan)");
@@ -179,4 +180,27 @@ app.controller('loginController', function($scope, $http, $cookies) {
         window.location.href = "index.html";
     };
 
+    $scope.changeUser = function (user) {
+        var num = $scope.users.username.indexOf(user);
+        if (num >= 0){
+            $scope.userInfo = {
+                username:$scope.users.username[num],
+                password:$scope.users.password[num],
+            };
+            $scope.scanFiles();
+        }
+    };
+
+    $scope.usersList = function () {
+        $http.get("./actions/map.php?admin="+$cookies.get('loginState')).success(function (response) {
+            $scope.users = response;
+
+            $scope.userInfo = {
+                username:response.username[0].toString(),
+                password:response.password[0].toString(),
+                autoLogin:true
+            };
+        });
+    };
+    $scope.usersList();
 });

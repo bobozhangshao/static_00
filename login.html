@@ -12,12 +12,12 @@
 </head>
 <body ng-app="loginApp">
 <div ng-controller="loginController" class="panel panel-primary">
-    <div class="col-md-offset-2 col-md-4 row">
-        <img src="img/fang_logo.png" class="img-responsive col-md-4">
+    <div class="col-md-offset-2 col-md-6 row">
+        <img src="img/fang_logo.png" class="img-responsive col-md-3">
         <div ng-if="login">
             <label class="label label-info" id="loginInfo">synchronize only after logging in</label>
         </div>
-        <div ng-if="!login">
+        <div ng-if="!login" class="col-md-3">
             <label class="label label-success">welcome <i><span ng-bind="userInfo.username"></span></i>
                 <div class="btn btn-sm btn-link" ng-click="clickLogout()">logout</div>
                 <div class="btn btn-sm btn-link" ng-click="scanFiles()">refresh</div>
@@ -25,6 +25,7 @@
             <label>
                 <button class="btn btn-info btn-xs" ng-click="backToMeasure()">back to measure</button>
             </label>
+            <select id="userList" ng-change="changeUser(user)" ng-model="user" ng-init="user=users.username[0]" ng-options="user for user in users.username"></select>
             <label class="label label-danger" ng-show="uploadAlert">file will be deleted from the local document</label>
         </div>
     </div>

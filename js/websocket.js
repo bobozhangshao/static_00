@@ -47,7 +47,7 @@ var websocket={
                 $.ajax({
                     type:"POST",
                     url:"./actions/measure.php",
-                    data:{'data':ecgdata,'type':'ECG','device':''},
+                    data:{'data':ecgdata,'type':'ECG','device':$("#connlist").valueOf()},
                     success:function () {
                     }
                 });

@@ -87,7 +87,7 @@ var index={
 };
 $(document).ready(index.onReady);
 
-
+//angular auto skip
 var appIndex = angular.module('indexApp',['ngCookies']);
 appIndex.controller('indexController',function ($scope,$cookies) {
     var loginName = $cookies.get('loginState');
