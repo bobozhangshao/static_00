@@ -206,11 +206,21 @@ app.controller('loginController', function($scope, $http, $cookies) {
             $scope.users = response;
 
             if ($scope.users.length != 0){
-                $scope.userInfo = {
-                    username:$scope.users.username[0],
-                    password:$scope.users.password[0],
-                    autoLogin:true
-                };
+
+                if ($cookies.get('workUser') != ''){
+                    var num = $scope.users.username.indexOf($cookies.get('workUser'));
+                    $scope.userInfo = {
+                        username:$scope.users.username[num],
+                        password:$scope.users.password[num],
+                        autoLogin:true
+                    };
+                } else {
+                    $scope.userInfo = {
+                        username:$scope.users.username[0],
+                        password:$scope.users.password[0],
+                        autoLogin:true
+                    };
+                }
             } else {
                 $scope.userInfo = {
                     username:$cookies.get('nameSave'),
@@ -218,11 +228,17 @@ app.controller('loginController', function($scope, $http, $cookies) {
                     autoLogin:true
                 };
             }
+
+            $scope.user = $scope.userInfo.username;
             $scope.scanFiles();
         }).error(function () {
             $scope.scanFiles();
         });
     };
-
     $scope.usersList();
+
+    //todo: add a new user using modal window
+    $scope.addUser = function () {
+        alert("add a new user");
+    }
 });
