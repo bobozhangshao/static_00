@@ -2,7 +2,7 @@
 var index={
 
     onReady: function(){
-    
+        //////
         websocket.create_websocket(window.location.hostname,
                                    "5500",
                                    function(){
