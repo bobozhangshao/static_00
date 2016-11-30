@@ -14,18 +14,8 @@ while (len--) {
 var ECG_series_data = [];
 len = 1000;
 while (len--) {
-	if (len==50 )
-    {
-		ECG_series_data.push({value:2, symbol:'circle',symbolSize:10});
-	}
-	else if (len == 100)
-	{
-		ECG_series_data.push({value:1, symbol:'circle',symbolSize:10});
-	}
-	else
-	{
+
 	ECG_series_data.push(0);
-	}
 }
 
 

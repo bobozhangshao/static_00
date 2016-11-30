@@ -31,18 +31,18 @@ var index={
         
 		
 		$("#Histogram_button").click(function(){
-            $("#Poincare,#PSD").hide();
-			$("#RR_hist,#HR_hist").show();
+            $("#Poincare,#Poincare_parameters,#PSD,#PSD_parameters1,#PSD_parameters2").hide();
+			$("#RR_hist,#HR_hist,#RR_hist_parameters,#HR_hist_parameters").show();
         });
 		
 		$("#Poincare_button").click(function(){
-            $("#RR_hist,#HR_hist,#PSD").hide();
-			$("#Poincare").show();
+            $("#RR_hist,#HR_hist,#PSD,#PSD_parameters1,#PSD_parameters2,#RR_hist_parameters,#HR_hist_parameters").hide();
+			$("#Poincare,#Poincare_parameters").show();
         });
 		
 		$("#PSD_button").click(function(){
-            $("#RR_hist,#HR_hist,#Poincare").hide();
-			$("#PSD").show();
+            $("#RR_hist,#HR_hist,#RR_hist_parameters,#HR_hist_parameters,#Poincare,#Poincare_parameters").hide();
+			$("#PSD,#PSD_parameters1,#PSD_parameters2").show();
         });
         
     },
@@ -73,11 +73,47 @@ var index={
         updateRealRR_HR(data);
     },
 	
+	updateHRVParameters: function(tp,fp){
+		
+		
+		$("#mean_rr").html(tp[0]);
+		$("#min_rr").html(tp[1]);
+        $("#max_rr").html(tp[2]);
+		$("#sd_rr").html(tp[3]);
+		$("#r_MSSD").html(tp[9]);
+		$("#pNN50").html(tp[10]);
+		$("#TINN").html(tp[11]);
+		$("#tindex").html(tp[12]);
+		
+		$("#mean_hr").html(tp[4]);
+		$("#mean_hr_s").html(tp[6]);
+		$("#sd_hr").html(tp[5]);
+		
+		$("#sd1").html(tp[13]);
+		$("#sd2").html(tp[14]);
+		$("#sd1_sd2").html(tp[15]);
+		
+		$("#vlfPower").html(fp[3]);
+		$("#vlfPowerPerc").html(fp[6]);
+		$("#lfPower").html(fp[4]);
+		$("#lfPowerPerc").html(fp[7]);
+		$("#lfNorm").html(fp[9]);
+		$("#hfPower").html(fp[5]);
+		$("#hfPowerPerc").html(fp[8]);
+		$("#hfNorm").html(fp[10]);
+		$("#lf_hf").html(fp[11]);
+		
+		
+    },
+	
 	HRV:function(RR_Histogram,HR_Histogram,RR_s,Freqs,Pxx){
         //index.message('<p class="message">Received : ' + RR_Histogram + ' ' +RR_Histogram.length + ' points.');
 		//index.message('<p class="message">Received : ' + HR_Histogram + ' ' +HR_Histogram.length + ' points.');
 		//index.message('<p class="message">Received : ' + Freqs + ' Pxx length: ' + Pxx.length + ' points.');
+		//index.message('<p class="message">Received : ' + tp);
         updateHRV(RR_Histogram,HR_Histogram,RR_s,Freqs,Pxx);
+		
+		index.updateHRVParameters(tp,fp);
     },
 
 	

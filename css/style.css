@@ -20,6 +20,27 @@ button:hover{
 	cursor:pointer;
 }
 
+table{
+	height:50px;
+	width:800px;
+	//margin:auto;
+	
+}
+
+tr{
+	margin-bottom:0px;
+	border-top:0px;
+}
+
+td{
+	border:0px;
+	text-align:center;
+	font-size:15px;
+	font-weight:bold;
+	padding-top:0px;
+	//padding-left:5px;
+}
+
 #Histogram_button,#Poincare_button,#PSD_button{
 	margin-top:3px;
 	margin-bottom:3px;
@@ -69,9 +90,10 @@ button:hover{
 #HR_hist {
     height: 200px; 
     width: 800px;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;	
+	border: 1px solid #ccc;	
+    //border-left: 1px solid #ccc;
+    //border-right: 1px solid #ccc;
+    //border-bottom: 1px solid #ccc;	
     padding: 1px;
 }
 
@@ -81,6 +103,10 @@ button:hover{
     border: 1px solid #ccc;	
     padding: 1px;
 	display: none;
+}
+
+#Poincare_parameters,#PSD_parameters1,#PSD_parameters2{
+	display:none;
 }
 
 .event {

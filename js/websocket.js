@@ -6,7 +6,7 @@ var websocket={
         websocket.opened = false;
         websocket.local = true;   
     },
-    //dfdfdfdfddfdfdfdfdf
+    
     create_websocket: function(host,port,openfunction){
     
         if (host == ""){
@@ -37,7 +37,9 @@ var websocket={
 				var RR_s = rsp["RR_s"];
 				var Freqs = rsp["Freqs"];
 				var Pxx = rsp["Pxx"];
-				eval(func + "(" + RR_Histogram + "," +HR_Histogram+ "," +RR_s+ "," +Freqs+ "," +Pxx+ ")");
+				var tp = rsp["tp"];
+				var fp = rsp["fp"];
+				eval(func + "(" + RR_Histogram + "," +HR_Histogram+ "," +RR_s+ "," +Freqs+ "," +Pxx+ "," +tp+ "," +fp+ ")");
 			}
 			else if(func == "index.dataECG")
 			{

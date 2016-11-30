@@ -44,9 +44,53 @@
 		<button id="PSD_button">Power Spectral Density</button>
 		
 		<div id="RR_hist"></div>
+		<table id="RR_hist_parameters">
+            <tr>
+			    <td>Mean RR (ms):</td><td id="mean_rr">000.00</td><td>Min RR (ms):</td><td id="min_rr">000.00</td>
+                <td>Max RR (ms):</td><td id="max_rr">000.00</td><td>SDNN (ms):</td><td id="sd_rr">00.00</td>
+		    </tr>
+            <tr>
+                <td>rMSSD (ms):</td><td id="r_MSSD">00.00</td><td>pNN50 (%):</td><td id="pNN50">0.00</td>
+				<td>TINN:</td><td id="TINN">000.00</td><td>HRV Triangular Index:</td><td id="tindex">0.00</td>
+            </tr>
+        </table>
+		
 		<div id="HR_hist"></div>
+		<table id="HR_hist_parameters">
+            <tr>
+			    <td>Mean HR (bpm):</td><td id="mean_hr">00.00</td><td>Mean HR (1/s):</td><td id="mean_hr_s">0.00</td>
+				<td>SDHR (bpm):</td><td id="sd_hr">0.00</td>
+			</tr>
+        </table>
+		
 		<div id="Poincare"></div>
+		<table id="Poincare_parameters">
+            <tr>
+			    <td>SD1 (ms):</td><td id="sd1">00.00</td><td>SD2 (ms):</td><td id="sd2">00.00</td>
+				<td>SD1/SD2:</td><td id="sd1_sd2">0.0</td>
+			</tr>
+        </table>
+		
 		<div id="PSD"></div>
+		<table id="PSD_parameters1">
+            <tr>
+                <td>Frequency range</td><td>Power (ms<sup>2</sup>)</td><td>Power (%):</td><td>Power (n.u.)</td>
+			</tr>
+            <tr>
+                <td>VLF</td><td id="vlfPower">00000.000</td><td id="vlfPowerPerc">00.000</td>
+            </tr>
+            <tr>
+                <td>LF</td><td id="lfPower">0000.000</td><td id="lfPowerPerc">0.000</td><td id="lfNorm">00.000</td>
+            </tr>
+            <tr>
+                <td>HF</td><td id="hfPower">000.000</td><td id="hfPowerPerc">0.000</td><td id="hfNorm">00.000</td>
+            </tr>
+        </table>
+		<table id="PSD_parameters2">
+            <tr>
+			    <td>LF/HF:</td><td id="lf_hf">00.00</td>
+			</tr>
+        </table>
 
 
     </div>

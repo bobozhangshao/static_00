@@ -18,7 +18,8 @@ app.config(function($httpProvider){
 });
 
 app.controller('loginController', function($scope, $http, $cookies) {
-    $scope.preURL = "http://localhost/HeartCare/";
+    //$scope.preURL = "http://localhost/HeartCare/";
+	$scope.preURL = "http://192.168.1.101/HeartCare/";
     $scope.loginURL      = $scope.preURL+"index.php?option=com_heartcare&task=user.login";
     $scope.logoutURL     = $scope.preURL+"index.php?option=com_heartcare&task=user.logout";
     $scope.checkLoginURL = $scope.preURL+"index.php?option=com_heartcare&task=user.user_state";
