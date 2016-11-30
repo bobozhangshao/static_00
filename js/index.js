@@ -3,14 +3,6 @@ var index={
 
     onReady: function(){
         //////
-        websocket.create_websocket(window.location.hostname,
-                                   "5500",
-                                   function(){
-                                       websocket.opened = true;
-                                       websocket.send_request("CHECK_TRIAL","\t");
-                                       index.message('<p class="event">WebSocket Status: ' + websocket.ws.readyState +' (open)');
-                                   
-                                   });
         
         $('#scanDev').click(function(){
             
@@ -134,4 +126,18 @@ appIndex.controller('indexController',function ($scope,$cookies) {
     $scope.skipToUpload = function () {
         window.location.href='login.html';
     }
+	
+	$scope.connectToGateway = function () {
+        websocket.create_websocket(window.location.hostname,
+                                   "5500",
+                                   function(){
+                                       websocket.opened = true;
+                                       websocket.send_request("CHECK_TRIAL","\t");
+                                       index.message('<p class="event">WebSocket Status: ' + websocket.ws.readyState +' (open)');
+                                   
+                                   });
+								   
+								   
+    }
+	
 });

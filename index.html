@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="css/style.css" type="text/css" />
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
         <script language="javascript" type="text/javascript" src="libs/jquery-1.7.1.min.js"></script>
+		<script language="javascript" type="text/javascript" src="libs/jquery.cookie.js"></script>
         <script language="javascript" type="text/javascript" src="libs/echarts.common.min.js"></script>
         
         <script language="javascript" type="text/javascript" src="js/websocket.js"></script>
@@ -21,6 +22,7 @@
     <div ng-controller="indexController">
         <h1 >ECG Client</h1>
         <button class="btn btn-xs btn-info" ng-click="skipToUpload()">go to manage measured data</button>
+		<button class="btn btn-sm btn-success" ng-click="connectToGateway()">Connect Gateway</button>
 
         <div id="chatLog" ></div>
         

@@ -49,7 +49,7 @@ var websocket={
                 $.ajax({
                     type:"POST",
                     url:"./actions/measure.php",
-                    data:{username:'admin','data':ecgdata,'type':'ECG','device':$("#connlist").valueOf()},
+                    data:{username:$.cookie("workUser"),'data':ecgdata,'type':'ECG','device':$("#connlist").valueOf()},
                     success:function () {
                     }
                 });
