@@ -13,7 +13,7 @@ var websocket={
             var host = '192.168.1.101';
             websocket.local = true;
         }
-        
+                
         if (typeof MozWebSocket != "undefined"){
             websocket.ws = new MozWebSocket("ws://"+host+":"+port);
         }
