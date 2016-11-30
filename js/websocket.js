@@ -6,14 +6,14 @@ var websocket={
         websocket.opened = false;
         websocket.local = true;   
     },
-    
+    //dfdfdfdfddfdfdfdfdf
     create_websocket: function(host,port,openfunction){
     
         if (host == ""){
             var host = '192.168.1.101';
             websocket.local = true;
         }
-        
+                
         if (typeof MozWebSocket != "undefined"){
             websocket.ws = new MozWebSocket("ws://"+host+":"+port);
         }
