@@ -6,7 +6,7 @@ var websocket={
         websocket.opened = false;
         websocket.local = true;   
     },
-    
+    //dfdfdfdfd
     create_websocket: function(host,port,openfunction){
     
         if (host == ""){
