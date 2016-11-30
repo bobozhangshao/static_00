@@ -237,7 +237,7 @@ app.controller('loginController', function($scope, $http, $cookies) {
     };
     $scope.usersList();
 
-    //todo: add a new user using modal window
+    //todo: add a new user using modal
     $scope.addUser = function () {
         alert("add a new user");
     }
