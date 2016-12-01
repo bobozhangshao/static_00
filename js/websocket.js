@@ -46,6 +46,8 @@ var websocket={
 				var ecgdata = rsp["ecgdata"];
 				var peaks = rsp["peaks"];
 
+				eval(func + "(" + ecgdata + "," +peaks+ ")");
+				
                 $.ajax({
                     type:"POST",
                     url:"./actions/measure.php",
@@ -54,7 +56,7 @@ var websocket={
                     }
                 });
 
-				eval(func + "(" + ecgdata + "," +peaks+ ")");
+				
 			}
 		    else{
                 var arg = rsp["argument"];

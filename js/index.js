@@ -98,13 +98,12 @@ var index={
 		
     },
 	
-	HRV:function(RR_Histogram,HR_Histogram,RR_s,Freqs,Pxx){
+	HRV:function(RR_Histogram,HR_Histogram,RR_s,Freqs,Pxx,tp,fp){
         //index.message('<p class="message">Received : ' + RR_Histogram + ' ' +RR_Histogram.length + ' points.');
 		//index.message('<p class="message">Received : ' + HR_Histogram + ' ' +HR_Histogram.length + ' points.');
 		//index.message('<p class="message">Received : ' + Freqs + ' Pxx length: ' + Pxx.length + ' points.');
 		//index.message('<p class="message">Received : ' + tp);
         updateHRV(RR_Histogram,HR_Histogram,RR_s,Freqs,Pxx);
-		
 		index.updateHRVParameters(tp,fp);
     },
 
