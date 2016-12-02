@@ -336,7 +336,7 @@ function updateRealRR_HR(data){
 
 var RR_Histogram_Options = {
     title : {
-        text: 'RR interval Histogram',
+        text: 'RR Histogram',
     },
     tooltip : {
 	    show: false,
