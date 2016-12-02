@@ -51,7 +51,7 @@ var websocket={
                 $.ajax({
                     type:"POST",
                     url:"./actions/measure.php",
-                    data:{username:$.cookie("workUser"),data:ecgdata,type:'ECG',device:$("#connlist").valueOf(),time:(new Date()).valueOf()/1000},
+                    data:{username:$.cookie("workUser"),'data':ecgdata,'type':'ECG','device':$("#connlist").valueOf()},
                     success:function () {
                     }
                 });
