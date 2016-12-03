@@ -9,10 +9,10 @@ var websocket={
     
     create_websocket: function(host,port,openfunction){
     
-        if (host == ""){
+        //if (host == ""){
             var host = '192.168.1.101';
             websocket.local = true;
-        }
+        //}
                 
         if (typeof MozWebSocket != "undefined"){
             websocket.ws = new MozWebSocket("ws://"+host+":"+port);
@@ -47,13 +47,17 @@ var websocket={
 				var peaks = rsp["peaks"];
 
 				eval(func + "(" + ecgdata + "," +peaks+ ")");
-				
+			
                 $.ajax({
-                    type:"POST",
-                    url:"./actions/measure.php",
-                    data:{username:$.cookie("workUser"),data:ecgdata,type:'ECG',device:$("#connlist").valueOf(),time:(new Date()).valueOf()/1000},
+                    type:"post",
+                    url:"http://localhost/static_00/actions/measure.php",
+                    data:{username:$.cookie("workUser"),data:ecgdata,type:'ECG',device:$("#connlist").val(),time:(new Date()).valueOf()/1000},
                     success:function () {
-                    }
+						alert("hello");
+                    },
+					error:function(){
+						alert("error");
+					}
                 });
 
 				
