@@ -45,7 +45,7 @@ function timeInDocument($timeStamp,$username){
         return $time;
     }
 
-    return $timeStamp;
+    return date("Y_m_d_H_i_s",$timeStamp);
 }
 
 echo writeDataTxt();
