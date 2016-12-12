@@ -1,7 +1,7 @@
 /**
  * Created by zhangshaobo on 2016/11/16.
  */
-var app = angular.module('loginApp', ['ngCookies']);
+var app = angular.module('loginApp', ['ngCookies','ui.bootstrap']);
 
 app.config(function($httpProvider){
     $httpProvider.defaults.transformRequest = function(obj){
@@ -17,9 +17,9 @@ app.config(function($httpProvider){
     }
 });
 
-app.controller('loginController', function($scope, $http, $cookies) {
+app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',function($scope, $http, $cookies, $uibModal) {
     //$scope.preURL = "http://localhost/HeartCare/";
-	$scope.preURL = "http://192.168.1.103/HeartCare/";
+    $scope.preURL = "http://192.168.1.103/HeartCare/";
     $scope.loginURL      = $scope.preURL+"index.php?option=com_heartcare&task=user.login";
     $scope.logoutURL     = $scope.preURL+"index.php?option=com_heartcare&task=user.logout";
     $scope.checkLoginURL = $scope.preURL+"index.php?option=com_heartcare&task=user.user_state";
@@ -240,6 +240,13 @@ app.controller('loginController', function($scope, $http, $cookies) {
 
     //todo: add a new user using modal window
     $scope.addUser = function () {
-        alert("add a new user");
+        var modalInstance = $uibModal.open({
+            templateUrl:'./adduser.html',
+            controller:'addModal'
+        })
     }
-});
+}]);
+
+app.controller('addModal',['$uibModalStack',function ($uibModalStack) {
+
+}]);
