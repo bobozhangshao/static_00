@@ -30,7 +30,7 @@
             <br>
             <label class="label label-warning">scan
                 <select class="text-success" ng-change="changeUser(user)" ng-model="user" ng-options="user for user in users.username"></select>
-                <button class="btn btn-link btn-xs text-success" ng-click="addUser()">Add</button>
+                <button class="btn btn-link btn-xs text-success" ng-click="manageUser()">manage</button>
             </label>
             <br>
             <label class="label label-danger" ng-show="uploadAlert">file will be deleted from the local document</label>
@@ -77,9 +77,14 @@
                 <td>{{ dataFile.MeasureTime }}</td>
                 <td>{{ dataFile.Device }}</td>
                 <td>{{ dataFile.DataType }}</td>
-                <td>{{ dataFile.Name }}</td>
+                <td>
+                    <div class="btn btn-link btn-xs" ng-click="visualizeData(dataFile,$index)">
+                        {{ dataFile.Name }}
+                    </div>
+                </td>
                 <td>
                     <div class="btn-group">
+                        <button class="btn btn-default btn-xs" ng-click="visualizeData(dataFile,$index)">wave</button>
                         <button class="btn btn-info btn-xs" ng-mouseover="showUploadAlert()" ng-mouseleave="closeUploadAlert()" ng-click="uploadData(dataFile,$index)">upload</button>
                         <button class="btn btn-danger btn-xs" ng-mouseover="showUploadAlert()" ng-mouseleave="closeUploadAlert()" ng-click="delData(dataFile,$index)">delete</button>
                     </div>
@@ -90,5 +95,6 @@
     </div>
 </div>
 <script src="js/http.js"></script>
+<script src="js/drawhistory.js"></script>
 </body>
 </html>

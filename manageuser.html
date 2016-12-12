@@ -1,0 +1,23 @@
+<div>
+    <div class="modal-header">
+        <label>Manage Map of the User and Administrator</label>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-heading">
+            <label class="label label-warning">
+                <select class="text-success" ng-model="user" ng-options="user for user in users.username"></select>
+                <button class="btn btn-link btn-xs">NEW</button>
+                <button class="btn btn-link btn-xs">DELETE</button>
+                <label>{{manageInfo}}</label>
+            </label>
+        </div>
+        <div class="panel panel-body">
+            <input type="text"/>
+            <input type="text"/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success btn-xs" ng-click="ok()">OK</button>
+        <button class="btn btn-info btn-xs" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

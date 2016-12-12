@@ -18,8 +18,8 @@ app.config(function($httpProvider){
 });
 
 app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',function($scope, $http, $cookies, $uibModal) {
-    //$scope.preURL = "http://localhost/HeartCare/";
-    $scope.preURL = "http://192.168.1.103/HeartCare/";
+    $scope.preURL = "http://localhost/HeartCare/";
+    //$scope.preURL = "http://192.168.1.103/HeartCare/";
     $scope.loginURL      = $scope.preURL+"index.php?option=com_heartcare&task=user.login";
     $scope.logoutURL     = $scope.preURL+"index.php?option=com_heartcare&task=user.logout";
     $scope.checkLoginURL = $scope.preURL+"index.php?option=com_heartcare&task=user.user_state";
@@ -238,15 +238,40 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',fun
     };
     $scope.usersList();
 
-    //todo: add a new user using modal window
-    $scope.addUser = function () {
+    $scope.manageUser = function () {
         var modalInstance = $uibModal.open({
-            templateUrl:'./adduser.html',
-            controller:'addModal'
-        })
+            templateUrl:'./manageuser.html',
+            size:'lg',
+            controller:'manageUserModalController',
+            resolve: {
+                users : function(){
+                    return $scope.users;
+                }
+            }
+        });
+
+        modalInstance.then();
+    };
+
+    $scope.visualizeData = function (dataFile, num) {
+        var modalInstance = $uibModal.open({
+            templateUrl:'./wave.html',
+            size:'lg',
+            controller:'waveShowModalController'
+        });
     }
 }]);
 
-app.controller('addModal',['$uibModalStack',function ($uibModalStack) {
+app.controller('manageUserModalController',['$scope','$uibModalInstance','users',function ($scope,$uibModalInstance,users) {
+    $scope.users = users;
+    $scope.user = users.username[0]?users.username[0]:'';
+    $scope.manageInfo = '管理这个用户';
 
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+    
+    $scope.ok = function () {
+        $uibModalInstance.close();
+    }
 }]);

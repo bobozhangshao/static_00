@@ -7,6 +7,11 @@
             <device>ECGICGMONITOR</device>
         </user>
         <user>
+            <username>zhangshao</username>
+            <password>bobo2410</password>
+            <device>ECGICGMONITOR</device>
+        </user>
+        <user>
             <username>admin</username>
             <password>admin</password>
             <device>ECGICGMONITOR</device>
