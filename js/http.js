@@ -261,17 +261,3 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',fun
         });
     }
 }]);
-
-app.controller('manageUserModalController',['$scope','$uibModalInstance','users',function ($scope,$uibModalInstance,users) {
-    $scope.users = users;
-    $scope.user = users.username[0]?users.username[0]:'';
-    $scope.manageInfo = '管理这个用户';
-
-    $scope.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
-    };
-    
-    $scope.ok = function () {
-        $uibModalInstance.close();
-    }
-}]);
