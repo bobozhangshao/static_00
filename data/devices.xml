@@ -1,0 +1,5 @@
+<devices>
+    <device>ECGICGMONITOR</device>
+    <device>MIO%GLOBAL-ALPHA2</device>
+    <device>HRW</device>
+</devices>

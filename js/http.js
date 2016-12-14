@@ -17,7 +17,7 @@ app.config(function($httpProvider){
     }
 });
 
-app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',function($scope, $http, $cookies, $uibModal) {
+app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal', '$log',function($scope, $http, $cookies, $uibModal, $log) {
     $scope.preURL = "http://localhost/HeartCare/";
     //$scope.preURL = "http://192.168.1.103/HeartCare/";
     $scope.loginURL      = $scope.preURL+"index.php?option=com_heartcare&task=user.login";
@@ -190,7 +190,7 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',fun
     $scope.changeUser = function (user) {
         $cookies.remove('workUser');
 
-        var num = $scope.users.username.indexOf(user);
+        var num = $scope.users.username.indexOf(user)?$scope.users.username.indexOf(user):0;
         if (num >= 0){
             $scope.userInfo = {
                 username:$scope.users.username[num],
@@ -207,7 +207,6 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',fun
             $scope.users = response;
 
             if ($scope.users.length != 0){
-
                 if ($cookies.get('workUser') != ''){
                     var num = $scope.users.username.indexOf($cookies.get('workUser'));
                     $scope.userInfo = {
@@ -238,21 +237,39 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal',fun
     };
     $scope.usersList();
 
+    //button manage ->modal
     $scope.manageUser = function () {
         var modalInstance = $uibModal.open({
             templateUrl:'./manageuser.html',
-            size:'lg',
+            size:'xs',
             controller:'manageUserModalController',
             resolve: {
                 users : function(){
                     return $scope.users;
+                },
+                choosedUser : function () {
+                    return $scope.userInfo.username;
                 }
             }
         });
 
-        modalInstance.then();
+        modalInstance.opened.then(function() {// 模态窗口打开之后执行的函数
+            console.log('modal is opened');
+        });
+        modalInstance.result.then(
+            function(result) {
+                console.log(result);
+            },
+            function(reason) {
+                $cookies.remove('workUser');
+                $scope.usersList();
+                console.log(reason);// 点击空白区域，总会输出backdrop
+                // click，点击取消，则会暑促cancel
+                $log.info('Modal dismissed at: ' + new Date());
+        });
     };
 
+    //data visualization ->modal
     $scope.visualizeData = function (dataFile, num) {
         var modalInstance = $uibModal.open({
             templateUrl:'./wave.html',
