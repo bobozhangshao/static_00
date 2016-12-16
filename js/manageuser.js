@@ -22,7 +22,7 @@ app.controller('manageUserModalController',['$http','$scope','$cookies','$uibMod
 
     $scope.delUser = function () {
         if (confirm("Confirm delete map of "+$scope.modalUser+"?")){
-            $http.get("./actions/manageuser.php?username="+$scope.modalUser+"&admin="+$cookies.get('loginState')).success(function (response) {
+            $http.get("./actions/manageuser.php?action=delUser&username="+$scope.modalUser+"&admin="+$cookies.get('loginState')).success(function (response) {
                 if (response){
                     alert($scope.modalUser+" has been deleted!");
                     //delete from the users list
@@ -42,7 +42,12 @@ app.controller('manageUserModalController',['$http','$scope','$cookies','$uibMod
     //devices table
     $scope.deleteDevice = function (num, device) {
         if (confirm("You confirm remove "+$scope.modalUser+"'s device: "+device+" ?")){
-            //todo
+            $http.get("./actions/manageuser.php?action=delDevice&username="+$scope.modalUser+"&admin="+$cookies.get('loginState')+"&device="+device).success(function (response) {
+                if (response){
+                    alert($scope.modalUser+"'s device '"+device+"' has been removed!");
+                    $scope.devices.splice(num,1);
+                }
+            });
 
         }
     };
