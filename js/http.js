@@ -262,7 +262,10 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal', '$
             },
             function(reason) {
                 $cookies.remove('workUser');
+                $cookies.put('workUser',$scope.users.username[0]?$scope.users.username[0]:$scope.userInfo.username);
+                $scope.user = $cookies.get('workUser');
                 $scope.usersList();
+
                 console.log(reason);// 点击空白区域，总会输出backdrop
                 // click，点击取消，则会暑促cancel
                 $log.info('Modal dismissed at: ' + new Date());
