@@ -23,7 +23,7 @@ app.controller('manageUserModalController',['$http','$scope','$cookies','$uibMod
     $scope.delUser = function () {
         if (confirm("Confirm delete map of "+$scope.modalUser+"?")){
             $http.get("./actions/manageuser.php?username="+$scope.modalUser+"&admin="+$cookies.get('loginState')).success(function (response) {
-                if (response == "OK"){
+                if (response){
                     alert($scope.modalUser+" has been deleted!");
                     //delete from the users list
                     var num = $scope.modalUsers.username?$scope.modalUsers.username.indexOf($scope.modalUser):0;

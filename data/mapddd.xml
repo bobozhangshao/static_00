@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<admins>
+    <admin>
+        <administrator>admin</administrator>
+        <user>
+            <username>hello</username>
+            <password>bobo2410</password>
+            <device>ECGICGMONITOR</device>
+        </user>
+        <user>
+            <username>zhangshao</username>
+            <password>bobo2410</password>
+            <device>ECGICGMONITOR</device>
+        </user>
+        <user>
+            <username>admin</username>
+            <password>admin</password>
+            <device>ECGICGMONITOR</device>
+            <device>MIO%GLOBAL-ALPHA2</device>
+            <device>HRW</device>
+        </user>
+    </admin>
+    <admin>
+        <administrator>hello</administrator>
+        <user>
+            <username>hello</username>
+            <password>bobo2410</password>
+            <device>ECGICGMONITOR</device>
+        </user>
+    </admin>
+</admins>
