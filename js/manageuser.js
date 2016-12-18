@@ -5,6 +5,9 @@ app.controller('manageUserModalController',['$http','$scope','$cookies','$uibMod
     $scope.modalUsers = users;
     $scope.modalUser = choosedUser?choosedUser:($scope.modalUsers.username&&$scope.modalUsers.username[0]?$scope.modalUsers.username[0]:'');
     $scope.manageInfo = '';
+    $scope.showTable = true;
+    $scope.newName = '';
+    $scope.newPwd = '';
 
     $scope.changeUserMap = function () {
         var num = $scope.modalUsers.username?$scope.modalUsers.username.indexOf($scope.modalUser):0;
@@ -18,6 +21,34 @@ app.controller('manageUserModalController',['$http','$scope','$cookies','$uibMod
     };
     $scope.closeDelAlert = function () {
         $scope.manageInfo = '';
+    };
+    $scope.showNewAlert = function () {
+        $scope.manageInfo = 'Click and add a new user!';
+    };
+    $scope.closeNewAlert = function () {
+        $scope.manageInfo = '';
+    };
+
+    $scope.newUser = function () {
+        $scope.showTable = false;
+    };
+    $scope.clearAdd = function () {
+        $scope.showTable = true;
+        $scope.newName = '';
+        $scope.newPwd = '';
+    };
+    $scope.saveAdd = function () {
+        if (confirm("Are you sure to add new user?\nusername : "+$scope.newName)){
+            $http.get("./actions/manageuser.php?action=addUser&username="+$scope.newName+"&password="+$scope.newPwd+"&admin="+$cookies.get('loginState')).success(function (response) {
+                if (response){
+                    alert("Add "+$scope.newName+" scuccess");
+                    $http.get("./actions/map.php?admin="+$cookies.get('loginState')).success(function (res) {
+                        $scope.modalUsers = res;
+                    })
+                }
+                $scope.clearAdd();
+            });
+        }
     };
 
     $scope.delUser = function () {
