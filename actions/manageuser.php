@@ -70,11 +70,13 @@ function addUser($file, $map){
     $username      = $_GET['username'];
     $password      = $_GET['password'];
 
-    //i,j定位
+    //i,j定位 flag标记是否有这个管理员
     $i = 0;
     $j = 0;
+    $flag = false;
     foreach ($map->admin as $item) {
         if ($item->administrator == $administrator){
+            $flag = true;
             foreach ($item->user as $itemUser){
                 if ($itemUser->username == $username){
                     return false;
@@ -87,6 +89,12 @@ function addUser($file, $map){
             break;
         }
         $i++;
+    }
+
+    if (!$flag){
+        $map->admin[$i]->administrator = $administrator;
+        $map->admin[$i]->user[0]->username = $username;
+        $map->admin[$i]->user[0]->password = $password;
     }
 
     if($map->saveXML($file)){

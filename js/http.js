@@ -18,8 +18,8 @@ app.config(function($httpProvider){
 });
 
 app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal', '$log',function($scope, $http, $cookies, $uibModal, $log) {
-    $scope.preURL = "http://localhost/HeartCare/";
-    //$scope.preURL = "http://192.168.1.103/HeartCare/";
+    //$scope.preURL = "http://localhost/HeartCare/";
+    $scope.preURL = "http://192.168.1.101/HeartCare/";
     $scope.loginURL      = $scope.preURL+"index.php?option=com_heartcare&task=user.login";
     $scope.logoutURL     = $scope.preURL+"index.php?option=com_heartcare&task=user.logout";
     $scope.checkLoginURL = $scope.preURL+"index.php?option=com_heartcare&task=user.user_state";
@@ -254,7 +254,7 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal', '$
         });
 
         modalInstance.opened.then(function() {// 模态窗口打开之后执行的函数
-            console.log('modal is opened');
+            console.log('user manage modal is opened');
         });
         modalInstance.result.then(
             function(result) {
@@ -268,7 +268,7 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal', '$
 
                 console.log(reason);// 点击空白区域，总会输出backdrop
                 // click，点击取消，则会暑促cancel
-                $log.info('Modal dismissed at: ' + new Date());
+                $log.info('user manage Modal dismissed at: ' + new Date());
         });
     };
 
@@ -277,7 +277,26 @@ app.controller('loginController', ['$scope', '$http', '$cookies','$uibModal', '$
         var modalInstance = $uibModal.open({
             templateUrl:'./wave.html',
             size:'lg',
-            controller:'waveShowModalController'
+            controller:'waveShowModalController',
+            resolve: {
+                dataInfo : function () {
+                    return dataFile;
+                },
+                num : function () {
+                    return num;
+                }
+            }
         });
+
+        modalInstance.opened.then(function () {
+            console.log('waveshow modal is opened');
+        });
+        modalInstance.result.then(
+            function (result) {
+                console.log('waveshow modal result is '+result);
+            },
+            function (reason) {
+                console.log('waveshow modal is closed: '+reason);
+            });
     }
 }]);
