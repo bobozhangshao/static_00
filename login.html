@@ -30,7 +30,6 @@
             <label class="label label-warning">scan
                 <select class="text-success" ng-change="changeUser(user)" ng-model="user" ng-options="user for user in users.username"></select>
                 <button class="btn btn-link btn-xs text-success" ng-click="manageUser()">manage</button>
-                <button class="btn btn-link btn-xs text-success" ng-click="addUser()">new</button>
             </label>
             <br>
             <label class="label label-danger" ng-show="uploadAlert">file will be deleted from the local document</label>

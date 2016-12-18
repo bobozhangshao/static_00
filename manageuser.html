@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="form-group col-xs-offset-4">
-                        <button class="btn btn-success" ng-click="saveAdd()">save</button>
+                        <button ng-disabled="newName==''||newPwd==''" class="btn btn-success" ng-click="saveAdd()">save</button>
                         <button class="btn btn-warning" ng-click="clearAdd()">clear</button>
                     </div>
                 </div>
