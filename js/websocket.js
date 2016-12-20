@@ -53,7 +53,7 @@ var websocket={
                     url:"http://localhost/static_00/actions/measure.php",
                     data:{username:$.cookie("workUser"),data:ecgdata,type:'ECG',device:$("#connlist").val(),time:(new Date()).valueOf()/1000},
                     success:function () {
-						alert("hello");
+						//alert("hello");
                     },
 					error:function(){
 						alert("error");
