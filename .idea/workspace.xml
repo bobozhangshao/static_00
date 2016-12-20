@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11e0f718-6da4-45fd-bf99-0b88d3a87f71" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/waveshow.php" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/admin/admin_ECGICGMONITOR_ECG_2016_12_02_23_12_00.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/admin/admin_ECGICGMONITOR_ECG_2016_12_02_23_6_00.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/admin/index.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/zhangshao/zhangshao_ecgmonitor_ECG_2015_11_21_18_00_01_.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/measure.php" afterPath="$PROJECT_DIR$/actions/measure.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/http.js" afterPath="$PROJECT_DIR$/js/http.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/websocket.js" afterPath="$PROJECT_DIR$/js/websocket.js" />
     </list>
     <ignored path="static_00.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,6 +49,16 @@
               <folding>
                 <element signature="e#6#130#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/actions/upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -415,7 +421,7 @@
       <workItem from="1481901547153" duration="3178000" />
       <workItem from="1482047808220" duration="13858000" />
       <workItem from="1482125504009" duration="17653000" />
-      <workItem from="1482193769840" duration="3262000" />
+      <workItem from="1482193769840" duration="3425000" />
     </task>
     <task id="LOCAL-00001" summary="管理功能 done">
       <created>1479870442231</created>
@@ -428,7 +434,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248021000" />
+    <option name="totallyTimeSpent" value="248184000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -554,13 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/actions/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -742,6 +741,14 @@
             <element signature="e#883#918#0#PHP" expanded="true" />
             <element signature="e#2450#2487#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
