@@ -11,7 +11,7 @@ function getFiles()
 {
     $dir = substr(__DIR__,0,-7)."data/".$_GET['username'];
     if (file_exists($dir)){
-        $files=array_diff(scandir($dir),array('.','..','index.html'));
+        $files=array_diff(scandir($dir),array('.','..','index.html','.DS_Store'));
         return $files;
     } else {
         if($_GET['username']){
@@ -39,7 +39,7 @@ function fixData()
             $result[$count]['UserName'] = $arr[0];
             $result[$count]['Device'] = $arr[1];
             $result[$count]['DataType'] = $arr[2];
-            $result[$count]['MeasureTime'] = $arr[3].'.'.$arr[4].'.'.$arr[5].' '.$arr[6].':'.$arr[7].':'.$arr[8];
+            $result[$count]['MeasureTime'] = $arr[3].'-'.$arr[4].'-'.$arr[5].' '.$arr[6].':'.$arr[7].':'.$arr[8];
             $result[$count]['Name'] = $item;
             $result[$count]['File'] = $dir.'/'.$item;
 
