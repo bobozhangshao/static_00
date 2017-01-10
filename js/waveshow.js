@@ -4,24 +4,51 @@
 app.controller('waveShowModalController',['$scope','$http','$uibModalInstance', 'dataInfo', 'num',function ($scope,$http,$uibModalInstance,dataInfo,num) {
     $scope.dataInfo = dataInfo;
     $scope.dataInfo.num = num;
+    $scope.dataResponse = {};
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+    $scope.setDataToStorage = function () {
+        // Check browser support
+        var storageKey = dataInfo.Name.slice(0,-4);
+        if (typeof(Storage) !== "undefined") {
+            $scope.dataResponseJson = localStorage.getItem(storageKey);
 
-    $http({
-        method:'POST',
-        url: "./actions/waveshow.php",
-        data:{type:dataInfo.DataType,file:dataInfo.File},
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function (response) {
+            if ($scope.dataResponseJson == null){
+                console.log(storageKey+" have not been stored ");
+                $http({
+                    method:'POST',
+                    url: "./actions/waveshow.php",
+                    data:{type:dataInfo.DataType,file:dataInfo.File},
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).success(function (response) {
+                    $scope.dataResponse = response;
+                    $scope.drawWave($scope.dataResponse);
+                    localStorage.setItem(storageKey,JSON.stringify(response));
+                }).error(function () {
+                    alert("error(wave system)");
+                });
+            } else {
+                console.log(storageKey+" have been stored ");
+                $scope.dataResponse = JSON.parse($scope.dataResponseJson);
+                $scope.$watch('$viewContentLoaded', function(){
+                    $scope.drawWave($scope.dataResponse);
+                });
+            }
+        } else {
+            console.log("Your web browser doesn't support Web Storage ...");
+        }
+    };
+    $scope.setDataToStorage();
+
+    $scope.drawWave = function (response) {
         var measureTime = +new Date(dataInfo.MeasureTime);
         var xAxisData = [];
         for (var i = 0; i < response.length;i=i+1){
             var now = new Date(measureTime+=4);
             xAxisData.push([now.getFullYear(), now.getMonth(), now.getDate()].join('/')+ " " +[now.getHours(), now.getMinutes(), now.getSeconds()].join(':'));
         }
-
 
         var yAxisData = response.data;
         var zoomData  = (1250/response.length)*100;//默认显示5秒
@@ -79,10 +106,6 @@ app.controller('waveShowModalController',['$scope','$http','$uibModalInstance', 
         };
 
         myChart.setOption(option);
-        console.log(document.getElementById('wave'));
 /////////ECharts//end  //////////
-
-    }).error(function () {
-        alert("error(wave system)");
-    });
+    }
 }]);
