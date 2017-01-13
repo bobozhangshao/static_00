@@ -80,23 +80,13 @@ app.controller('waveShowModalController',['$scope','$http','$uibModalInstance', 
             },
             xAxis: {
                 data: xAxisData,
-                offset : 0,
-                splitLine : {
-                    show : true,
-                    interval : 50
-                }
+                offset : 0
             },
             yAxis: {
                 splitLine: {
                     show: true
                 },
                 min : 'auto'
-            },
-            grid : {
-                show : true,
-                left : '5%',
-                right : '3%',
-                borderWidth : 0.8
             },
             toolbox: {
                 feature: {
@@ -122,12 +112,6 @@ app.controller('waveShowModalController',['$scope','$http','$uibModalInstance', 
                 name: dataInfo.DataType,
                 type: 'line',
                 smooth: true,
-                showSymbol : false,
-                lineStyle : {
-                    normal : {
-                        width : 1
-                    }
-                },
                 data: yAxisData
             }]
         };
