@@ -37,7 +37,18 @@ app.controller('waveShowModalController',['$scope','$http','$uibModalInstance', 
                 });
             }
         } else {
-            console.log("Your web browser doesn't support Web Storage ...");
+            console.log("Your web browser doesn't support Web Storage.");
+            $http({
+                method:'POST',
+                url: "./actions/waveshow.php",
+                data:{type:dataInfo.DataType,file:dataInfo.File},
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function (response) {
+                $scope.dataResponse = response;
+                $scope.drawWave($scope.dataResponse);
+            }).error(function () {
+                alert("error(wave system)");
+            });
         }
     };
     $scope.setDataToStorage();
